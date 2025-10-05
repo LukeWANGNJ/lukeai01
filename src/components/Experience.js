@@ -5,7 +5,7 @@ import { FaBuilding, FaCalendar, FaMapMarkerAlt } from 'react-icons/fa';
 
 const ExperienceSection = styled.section`
   padding: 6rem 2rem;
-  background: #f7fafc;
+  background: #000;
   min-height: 100vh;
 `;
 
@@ -20,7 +20,7 @@ const SectionTitle = styled(motion.h2)`
   font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
-  color: #2d3748;
+  color: #f5f5f7;
 
   @media (max-width: 768px) {
     font-size: 2rem;
@@ -93,13 +93,14 @@ const TimelineDot = styled.div`
 `;
 
 const ExperienceCard = styled(motion.div)`
-  background: white;
+  background: rgba(255, 255, 255, 0.1);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   width: calc(50% - 2rem);
   position: relative;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(30px);
 
   &::before {
     content: '';
@@ -115,7 +116,7 @@ const ExperienceCard = styled(motion.div)`
     
     &::before {
       right: -20px;
-      border-left-color: white;
+      border-left-color: rgba(255, 255, 255, 0.1);
       transform: translateY(-50%);
     }
   }
@@ -125,7 +126,7 @@ const ExperienceCard = styled(motion.div)`
     
     &::before {
       left: -20px;
-      border-right-color: white;
+      border-right-color: rgba(255, 255, 255, 0.1);
       transform: translateY(-50%);
     }
   }
@@ -152,7 +153,7 @@ const CompanyInfo = styled.div`
 const JobTitle = styled.h3`
   font-size: 1.3rem;
   font-weight: 700;
-  color: #2d3748;
+  color: #f5f5f7;
   margin-bottom: 0.5rem;
 `;
 
@@ -162,7 +163,7 @@ const JobMeta = styled.div`
   gap: 1rem;
   margin-bottom: 1rem;
   font-size: 0.9rem;
-  color: #718096;
+  color: #d1d5db;
 `;
 
 const MetaItem = styled.div`
@@ -172,7 +173,7 @@ const MetaItem = styled.div`
 `;
 
 const JobDescription = styled.p`
-  color: #4a5568;
+  color: #e5e7eb;
   line-height: 1.6;
   margin-bottom: 1rem;
 `;
@@ -195,36 +196,36 @@ const TechTag = styled.span`
 const Experience = () => {
   const experiences = [
     {
-      company: "NIO Inc.",
-      title: "Senior Software Engineer",
-      period: "2021 - Present",
-      location: "Shanghai, China",
-      description: "Leading development of electric vehicle software systems and autonomous driving features. Architecting scalable microservices and implementing real-time data processing solutions.",
-      technologies: ["React", "Node.js", "Python", "AWS", "Kubernetes", "MongoDB"]
-    },
-    {
-      company: "Ford Motor Company",
-      title: "Software Engineer",
-      period: "2019 - 2021",
-      location: "Dearborn, MI",
-      description: "Developed connected vehicle applications and infotainment systems. Collaborated with cross-functional teams to deliver innovative automotive software solutions.",
-      technologies: ["Java", "Spring Boot", "Angular", "PostgreSQL", "Docker", "Jenkins"]
+      company: "Ericsson",
+      title: "工业4.0负责人",
+      period: "2024年7月 - 至今",
+      location: "中国江苏南京",
+      description: "领导工业4.0倡议和数字化转型战略。推动智能制造解决方案创新，监督下一代工业自动化平台的开发。",
+      technologies: ["Industry 4.0", "IoT", "AI/ML", "Digital Twin", "5G"]
     },
     {
       company: "Ericsson",
-      title: "Software Developer",
-      period: "2017 - 2019",
-      location: "Plano, TX",
-      description: "Built telecommunications network management systems and 5G infrastructure software. Optimized system performance and implemented automated testing frameworks.",
-      technologies: ["C++", "Linux", "REST APIs", "MySQL", "Git", "Agile"]
+      title: "产品组合经理",
+      period: "2022年9月 - 2024年6月",
+      location: "中国江苏南京",
+      description: "管理全面的产品组合战略和路线图。领导跨职能团队交付创新制造解决方案，推动市场扩张计划。",
+      technologies: ["Product Strategy", "Roadmap Planning", "Market Analysis", "Agile"]
     },
     {
-      company: "Compal Communications",
-      title: "Junior Developer",
-      period: "2015 - 2017",
-      location: "Taipei, Taiwan",
-      description: "Developed embedded software for networking equipment and IoT devices. Gained experience in hardware-software integration and real-time systems.",
-      technologies: ["C", "Embedded Systems", "RTOS", "TCP/IP", "Hardware Integration"]
+      company: "Ericsson",
+      title: "智能制造产品经理",
+      period: "2019年1月 - 2022年8月",
+      location: "中国江苏南京",
+      description: "开发并推出智能制造产品。与工程团队合作设计MES解决方案，为制造业客户实施数字化转型计划。",
+      technologies: ["MES", "Smart Manufacturing", "Product Development", "Client Solutions"]
+    },
+    {
+      company: "Compal Communications, Inc.",
+      title: "高级MES工程师",
+      period: "2013年5月 - 2015年4月",
+      location: "中国江苏南京",
+      description: "领导MES系统实施和优化项目。为电子制造业设计和部署制造执行系统，提高生产效率和质量控制。",
+      technologies: ["MES Systems", "Manufacturing", "Quality Control", "Process Optimization"]
     }
   ];
 
@@ -237,7 +238,7 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          Professional Experience
+工作经历
         </SectionTitle>
 
         <Timeline>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaCode, FaUsers, FaRocket, FaLightbulb } from 'react-icons/fa';
+import { FaIndustry, FaCogs, FaUsers, FaChartLine } from 'react-icons/fa';
 
 const AboutSection = styled.section`
   padding: 6rem 2rem;
@@ -120,31 +120,31 @@ const StatLabel = styled.p`
 const About = () => {
   const highlights = [
     {
-      icon: <FaCode />,
-      title: "Full-Stack Development",
-      description: "Expert in modern web technologies and frameworks"
+      icon: <FaIndustry />,
+      title: "工业4.0",
+      description: "引领制造业数字化转型"
+    },
+    {
+      icon: <FaCogs />,
+      title: "智能制造",
+      description: "MES和自动化系统专家"
     },
     {
       icon: <FaUsers />,
-      title: "Team Leadership",
-      description: "Experienced in leading and mentoring development teams"
+      title: "团队领导",
+      description: "拥有丰富的跨职能团队领导经验"
     },
     {
-      icon: <FaRocket />,
-      title: "Innovation",
-      description: "Passionate about implementing cutting-edge solutions"
-    },
-    {
-      icon: <FaLightbulb />,
-      title: "Problem Solving",
-      description: "Strong analytical skills and creative thinking"
+      icon: <FaChartLine />,
+      title: "产品管理",
+      description: "战略产品组合管理"
     }
   ];
 
   const stats = [
-    { number: "8+", label: "Years Experience" },
-    { number: "50+", label: "Projects Completed" },
-    { number: "15+", label: "Team Members Led" }
+    { number: "15+", label: "年工作经验" },
+    { number: "50+", label: "团队管理" },
+    { number: "3", label: "领导职位" }
   ];
 
   return (
@@ -156,7 +156,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          About Me
+关于我
         </SectionTitle>
 
         <AboutContent>
@@ -167,9 +167,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              I'm a passionate software engineer with over 8 years of experience in building 
-              scalable web applications and leading development teams. My expertise spans across 
-              full-stack development, cloud technologies, and agile methodologies.
+我是一位充满激情的工业4.0领导者，在制造执行系统(MES)、智能制造和数字化转型方面拥有超过15年的经验。目前担任爱立信工业4.0负责人，推动工业数字化创新。
             </AboutText>
 
             <AboutText
@@ -178,9 +176,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              I believe in writing clean, maintainable code and fostering collaborative 
-              environments where teams can thrive. My goal is to create innovative solutions 
-              that make a real impact on users and businesses.
+我的专业领域包括产品组合管理、智能制造解决方案，以及领导跨职能团队交付前沿的工业自动化系统，改变传统制造流程。
             </AboutText>
 
             <StatsGrid>
