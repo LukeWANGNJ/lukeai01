@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaBuilding, FaCalendar, FaMapMarkerAlt } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 const ExperienceSection = styled.section`
   padding: 6rem 2rem;
@@ -93,14 +94,15 @@ const TimelineDot = styled.div`
 `;
 
 const ExperienceCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.1);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   width: calc(50% - 2rem);
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
 
   &::before {
     content: '';
@@ -194,37 +196,39 @@ const TechTag = styled.span`
 `;
 
 const Experience = () => {
+  const { t } = useLanguage();
+  
   const experiences = [
     {
       company: "Ericsson",
-      title: "工业4.0负责人",
-      period: "2024年7月 - 至今",
-      location: "中国江苏南京",
-      description: "领导工业4.0倡议和数字化转型战略。推动智能制造解决方案创新，监督下一代工业自动化平台的开发。",
+      title: t("Head of Industry 4.0", "工业4.0负责人"),
+      period: t("Jul 2024 - Present", "2024年7月 - 至今"),
+      location: t("Nanjing, Jiangsu, China", "中国江苏南京"),
+      description: t("Leading Industry 4.0 initiatives and digital transformation strategies. Driving innovation in smart manufacturing solutions and overseeing the development of next-generation industrial automation platforms.", "领导工业4.0倡议和数字化转型战略。推动智能制造解决方案创新，监督下一代工业自动化平台的开发。"),
       technologies: ["Industry 4.0", "IoT", "AI/ML", "Digital Twin", "5G"]
     },
     {
       company: "Ericsson",
-      title: "产品组合经理",
-      period: "2022年9月 - 2024年6月",
-      location: "中国江苏南京",
-      description: "管理全面的产品组合战略和路线图。领导跨职能团队交付创新制造解决方案，推动市场扩张计划。",
+      title: t("Manager of Product Portfolio", "产品组合经理"),
+      period: t("Sep 2022 - Jun 2024", "2022年9月 - 2024年6月"),
+      location: t("Nanjing, Jiangsu, China", "中国江苏南京"),
+      description: t("Managed comprehensive product portfolio strategy and roadmap. Led cross-functional teams to deliver innovative manufacturing solutions and drove market expansion initiatives.", "管理全面的产品组合战略和路线图。领导跨职能团队交付创新制造解决方案，推动市场扩张计划。"),
       technologies: ["Product Strategy", "Roadmap Planning", "Market Analysis", "Agile"]
     },
     {
       company: "Ericsson",
-      title: "智能制造产品经理",
-      period: "2019年1月 - 2022年8月",
-      location: "中国江苏南京",
-      description: "开发并推出智能制造产品。与工程团队合作设计MES解决方案，为制造业客户实施数字化转型计划。",
+      title: t("Product Manager, Smart Manufacturing", "智能制造产品经理"),
+      period: t("Jan 2019 - Aug 2022", "2019年1月 - 2022年8月"),
+      location: t("Nanjing, Jiangsu, China", "中国江苏南京"),
+      description: t("Developed and launched smart manufacturing products. Collaborated with engineering teams to design MES solutions and implemented digital transformation initiatives for manufacturing clients.", "开发并推出智能制造产品。与工程团队合作设计MES解决方案，为制造业客户实施数字化转型计划。"),
       technologies: ["MES", "Smart Manufacturing", "Product Development", "Client Solutions"]
     },
     {
       company: "Compal Communications, Inc.",
-      title: "高级MES工程师",
-      period: "2013年5月 - 2015年4月",
-      location: "中国江苏南京",
-      description: "领导MES系统实施和优化项目。为电子制造业设计和部署制造执行系统，提高生产效率和质量控制。",
+      title: t("Senior MES Engineer", "高级MES工程师"),
+      period: t("May 2013 - Apr 2015", "2013年5月 - 2015年4月"),
+      location: t("Nanjing, Jiangsu, China", "中国江苏南京"),
+      description: t("Led MES system implementation and optimization projects. Designed and deployed manufacturing execution systems for electronics manufacturing, improving production efficiency and quality control.", "领导MES系统实施和优化项目。为电子制造业设计和部署制造执行系统，提高生产效率和质量控制。"),
       technologies: ["MES Systems", "Manufacturing", "Quality Control", "Process Optimization"]
     }
   ];
@@ -238,7 +242,7 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-工作经历
+{t('Professional Experience', '工作经历')}
         </SectionTitle>
 
         <Timeline>

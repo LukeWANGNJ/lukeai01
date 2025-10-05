@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaEnvelope, FaDownload } from 'react-icons/fa';
+import { FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -9,9 +10,36 @@ const HeroSection = styled.section`
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
+  color: #f5f5f7;
   position: relative;
   overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+      linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.01) 50%, transparent 70%);
+    animation: shimmer 15s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { 
+      transform: translateX(-10px) translateY(-5px) rotate(0deg);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: translateX(10px) translateY(5px) rotate(1deg);
+      opacity: 1;
+    }
+  }
 `;
 
 const HeroContent = styled.div`
@@ -40,10 +68,15 @@ const Greeting = styled(motion.p)`
 `;
 
 const Name = styled(motion.h1)`
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 8vw, 4rem);
   font-weight: 700;
   margin-bottom: 1rem;
-  line-height: 1.1;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #f5f5f7 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
@@ -51,10 +84,12 @@ const Name = styled(motion.h1)`
 `;
 
 const Title = styled(motion.h2)`
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
   font-weight: 400;
   margin-bottom: 2rem;
-  opacity: 0.9;
+  opacity: 0.8;
+  color: #a1a1aa;
+  letter-spacing: -0.01em;
 
   @media (max-width: 768px) {
     font-size: 1.2rem;
@@ -80,35 +115,52 @@ const ButtonGroup = styled(motion.div)`
 `;
 
 const Button = styled(motion.button)`
-  padding: 0.75rem 1.5rem;
+  padding: 12px 24px;
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: 24px;
+  font-weight: 500;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
 `;
 
 const PrimaryButton = styled(Button)`
-  background: white;
-  color: #667eea;
+  background: #0071e3;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 113, 227, 0.3);
 
   &:hover {
+    background: #0077ed;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 113, 227, 0.4);
   }
 `;
 
-const SecondaryButton = styled(Button)`
-  background: transparent;
-  color: white;
-  border: 2px solid white;
+const SecondaryButton = styled.a`
+  padding: 12px 24px;
+  border: none;
+  border-radius: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f5f7;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 
   &:hover {
-    background: white;
-    color: #667eea;
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
   }
 `;
@@ -147,8 +199,42 @@ const ProfileImage = styled(motion.div)`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(45deg, 
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.1) 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.1) 75%,
+      rgba(255, 255, 255, 0.3) 100%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.1) 100%);
+    backdrop-filter: blur(1px);
+  }
+
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
 
   @media (max-width: 768px) {
     width: 200px;
@@ -157,6 +243,8 @@ const ProfileImage = styled(motion.div)`
 `;
 
 const Hero = () => {
+  const { t } = useLanguage();
+  
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -173,7 +261,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-你好，我是
+{t('Hello, I\'m', '你好，我是')}
           </Greeting>
           
           <Name
@@ -181,7 +269,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-王晋
+{t('Luke Wang', '王晋')}
           </Name>
           
           <Title
@@ -189,7 +277,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-工业4.0与智能制造专家
+{t('Industry 4.0 & Smart Manufacturing Leader', '工业4.0与智能制造专家')}
           </Title>
           
           <Description
@@ -197,7 +285,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-致力于通过创新的工业4.0解决方案推动制造业数字化转型。在MES、智能制造和产品组合管理方面拥有超过15年的经验。
+{t('Passionate about driving digital transformation in manufacturing through innovative Industry 4.0 solutions. Over 15 years of experience in MES, smart manufacturing, and product portfolio management.', '致力于通过创新的工业4.0解决方案推动制造业数字化转型。在MES、智能制造和产品组合管理方面拥有超过15年的经验。')}
           </Description>
           
           <ButtonGroup
@@ -211,18 +299,18 @@ const Hero = () => {
               onClick={scrollToContact}
             >
               <FaEnvelope />
-联系我
+{t('Get In Touch', '联系我')}
             </PrimaryButton>
             
             <SecondaryButton
-              as="a"
+              as={motion.a}
               href="/Luke_Wang_CV.pdf"
               download="Luke_Wang_CV.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <FaDownload />
-下载简历
+{t('Download CV', '下载简历')}
             </SecondaryButton>
           </ButtonGroup>
           
@@ -241,15 +329,7 @@ const Hero = () => {
               <FaLinkedin />
             </SocialLink>
             
-            <SocialLink
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaGithub />
-            </SocialLink>
+
           </SocialLinks>
         </TextContent>
         

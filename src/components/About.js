@@ -2,13 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaIndustry, FaCogs, FaUsers, FaChartLine } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 const AboutSection = styled.section`
-  padding: 6rem 2rem;
-  background: white;
+  padding: 8rem 2rem;
+  background: #000;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
 `;
 
 const Container = styled.div`
@@ -22,7 +36,7 @@ const SectionTitle = styled(motion.h2)`
   font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
-  color: #2d3748;
+  color: #f5f5f7;
 
   @media (max-width: 768px) {
     font-size: 2rem;
@@ -42,13 +56,16 @@ const AboutContent = styled.div`
 `;
 
 const TextContent = styled.div`
-  color: #4a5568;
+  color: #a1a1aa;
 `;
 
 const AboutText = styled(motion.p)`
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.2rem;
+  line-height: 1.6;
   margin-bottom: 2rem;
+  color: #a1a1aa;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 `;
 
 const HighlightGrid = styled.div`
@@ -62,12 +79,23 @@ const HighlightGrid = styled.div`
 `;
 
 const HighlightCard = styled(motion.div)`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
-  border-radius: 12px;
-  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2.5rem;
+  border-radius: 24px;
+  color: #f5f5f7;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    transform: translateY(-12px) scale(1.03);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
 `;
 
 const HighlightIcon = styled.div`
@@ -99,52 +127,66 @@ const StatsGrid = styled.div`
 
 const StatCard = styled(motion.div)`
   text-align: center;
-  padding: 1.5rem;
-  background: #f7fafc;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
 `;
 
 const StatNumber = styled.h3`
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: #667eea;
+  color: #0071e3;
   margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
 `;
 
 const StatLabel = styled.p`
-  color: #4a5568;
+  color: #e5e7eb;
   font-weight: 500;
 `;
 
 const About = () => {
+  const { t } = useLanguage();
+  
   const highlights = [
     {
       icon: <FaIndustry />,
-      title: "工业4.0",
-      description: "引领制造业数字化转型"
+      title: t("Industry 4.0", "工业4.0"),
+      description: t("Leading digital transformation in manufacturing", "引领制造业数字化转型")
     },
     {
       icon: <FaCogs />,
-      title: "智能制造",
-      description: "MES和自动化系统专家"
+      title: t("Smart Manufacturing", "智能制造"),
+      description: t("Expert in MES and automation systems", "MES和自动化系统专家")
     },
     {
       icon: <FaUsers />,
-      title: "团队领导",
-      description: "拥有丰富的跨职能团队领导经验"
+      title: t("Team Leadership", "团队领导"),
+      description: t("Experienced in leading cross-functional teams", "拥有丰富的跨职能团队领导经验")
     },
     {
       icon: <FaChartLine />,
-      title: "产品管理",
-      description: "战略产品组合管理"
+      title: t("Product Management", "产品管理"),
+      description: t("Strategic product portfolio management", "战略产品组合管理")
     }
   ];
 
   const stats = [
-    { number: "15+", label: "年工作经验" },
-    { number: "50+", label: "团队管理" },
-    { number: "3", label: "领导职位" }
+    { number: "15+", label: t("Years Experience", "年工作经验") },
+    { number: "50+", label: t("Teams Led", "团队管理") },
+    { number: "3", label: t("Leadership Roles", "领导职位") }
   ];
 
   return (
@@ -156,7 +198,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-关于我
+{t('About Me', '关于我')}
         </SectionTitle>
 
         <AboutContent>
@@ -167,7 +209,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-我是一位充满激情的工业4.0领导者，在制造执行系统(MES)、智能制造和数字化转型方面拥有超过15年的经验。目前担任爱立信工业4.0负责人，推动工业数字化创新。
+{t('I\'m a passionate Industry 4.0 leader with over 15 years of experience in manufacturing execution systems (MES), smart manufacturing, and digital transformation. Currently serving as Head of Industry 4.0 at Ericsson, driving innovation in industrial digitalization.', '我是一位充满激情的工业4.0领导者，在制造执行系统(MES)、智能制造和数字化转型方面拥有超过15年的经验。目前担任爱立信工业4.0负责人，推动工业数字化创新。')}
             </AboutText>
 
             <AboutText
@@ -176,7 +218,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-我的专业领域包括产品组合管理、智能制造解决方案，以及领导跨职能团队交付前沿的工业自动化系统，改变传统制造流程。
+{t('My expertise includes product portfolio management, smart manufacturing solutions, and leading cross-functional teams to deliver cutting-edge industrial automation systems that transform traditional manufacturing processes.', '我的专业领域包括产品组合管理、智能制造解决方案，以及领导跨职能团队交付前沿的工业自动化系统，改变传统制造流程。')}
             </AboutText>
 
             <StatsGrid>

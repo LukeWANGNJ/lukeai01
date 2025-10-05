@@ -2,13 +2,27 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaMapMarkerAlt, FaLinkedin } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 const ContactSection = styled.section`
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #000;
+  color: #f5f5f7;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 113, 227, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
 `;
 
 const Container = styled.div`
@@ -108,11 +122,20 @@ const SocialLink = styled(motion.a)`
 `;
 
 const ContactForm = styled(motion.form)`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  padding: 3rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
 `;
 
 const FormGroup = styled.div`
@@ -128,13 +151,15 @@ const Label = styled.label`
 
 const Input = styled.input`
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f5f5f7;
   font-size: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.7);
@@ -142,51 +167,56 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.15);
+    border-color: #0071e3;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 113, 227, 0.3);
   }
 `;
 
 const TextArea = styled.textarea`
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f5f5f7;
   font-size: 1rem;
   min-height: 120px;
   resize: vertical;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.7);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
 
   &:focus {
     outline: none;
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.15);
+    border-color: #0071e3;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 113, 227, 0.3);
   }
 `;
 
 const SubmitButton = styled(motion.button)`
   width: 100%;
-  padding: 0.75rem 1.5rem;
-  background: white;
-  color: #667eea;
+  padding: 12px 24px;
+  background: #0071e3;
+  color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 24px;
+  font-size: 17px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 20px rgba(0, 113, 227, 0.3);
 
   &:hover {
+    background: #0077ed;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 113, 227, 0.4);
   }
 
   &:disabled {
@@ -196,6 +226,8 @@ const SubmitButton = styled(motion.button)`
 `;
 
 const Contact = () => {
+  const { t } = useLanguage();
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -212,8 +244,10 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    const { name, email, subject, message } = formData;
+    const mailtoLink = `mailto:luke_wang1987@163.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+    window.location.href = mailtoLink;
+    
     // Reset form
     setFormData({
       name: '',
@@ -224,13 +258,10 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    {
-      icon: <FaEnvelope />,
-      text: "luke_wang1987@163.com"
-    },
+
     {
       icon: <FaMapMarkerAlt />,
-      text: "中国江苏南京"
+      text: t("Nanjing, Jiangsu, China", "中国江苏南京")
     }
   ];
 
@@ -243,7 +274,7 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-联系我
+{t('Get In Touch', '联系我')}
         </SectionTitle>
 
         <ContactContent>
@@ -253,9 +284,9 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <ContactTitle>让我们合作</ContactTitle>
+            <ContactTitle>{t('Let\'s Work Together', '让我们合作')}</ContactTitle>
             <ContactDescription>
-我始终对工业4.0和智能制造领域的新机遇和激动人心的项目感兴趣。无论您有问题还是想讨论合作，我都会尽力回复您！
+{t('I\'m always interested in new opportunities and exciting projects in Industry 4.0 and smart manufacturing. Whether you have a question or want to discuss collaboration, I\'ll try my best to get back to you!', '我始终对工业4.0和智能制造领域的新机遇和激动人心的项目感兴趣。无论您有问题还是想讨论合作，我都会尽力回复您！')}
             </ContactDescription>
 
             <ContactList>
@@ -287,6 +318,7 @@ const Contact = () => {
                 href="mailto:luke_wang1987@163.com"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
+                title="Send Email"
               >
                 <FaEnvelope />
               </SocialLink>
@@ -301,52 +333,52 @@ const Contact = () => {
             onSubmit={handleSubmit}
           >
             <FormGroup>
-              <Label htmlFor="name">姓名</Label>
+              <Label htmlFor="name">{t('Name', '姓名')}</Label>
               <Input
                 type="text"
                 id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="您的姓名"
+                placeholder={t('Your Name', '您的姓名')}
                 required
               />
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="email">邮箱</Label>
+              <Label htmlFor="email">{t('Email', '邮箱')}</Label>
               <Input
                 type="email"
                 id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="您的邮箱@example.com"
+                placeholder={t('your.email@example.com', '您的邮箱@example.com')}
                 required
               />
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="subject">主题</Label>
+              <Label htmlFor="subject">{t('Subject', '主题')}</Label>
               <Input
                 type="text"
                 id="subject"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
-                placeholder="主题"
+                placeholder={t('Subject', '主题')}
                 required
               />
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="message">消息</Label>
+              <Label htmlFor="message">{t('Message', '消息')}</Label>
               <TextArea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="您的消息..."
+                placeholder={t('Your message...', '您的消息...')}
                 required
               />
             </FormGroup>
@@ -356,7 +388,7 @@ const Contact = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-发送消息
+{t('Send Message', '发送消息')}
             </SubmitButton>
           </ContactForm>
         </ContactContent>

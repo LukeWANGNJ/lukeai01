@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaHeart, FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { FaHeart, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
-  background: #2d3748;
-  color: white;
-  padding: 3rem 2rem 1rem;
+  background: #000;
+  color: #a1a1aa;
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
 const Container = styled.div`
@@ -16,68 +18,45 @@ const Container = styled.div`
 `;
 
 const FooterContent = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-`;
-
-const FooterSection = styled(motion.div)``;
-
-const SectionTitle = styled.h3`
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #667eea;
-`;
-
-const SectionText = styled.p`
-  line-height: 1.6;
-  opacity: 0.8;
-`;
-
-const QuickLinks = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
 `;
 
-const QuickLink = styled.a`
-  color: white;
-  text-decoration: none;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  cursor: pointer;
 
-  &:hover {
-    opacity: 1;
-    color: #667eea;
-  }
-`;
+
+
+
+
+
+
+
+
 
 const SocialLinks = styled.div`
   display: flex;
   gap: 1rem;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-  }
+  justify-content: center;
 `;
 
 const SocialLink = styled(motion.a)`
   color: white;
   font-size: 1.5rem;
-  opacity: 0.8;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   transition: all 0.3s ease;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 
   &:hover {
-    opacity: 1;
-    color: #667eea;
+    background: rgba(255, 255, 255, 0.12);
     transform: translateY(-3px);
   }
 `;
@@ -117,74 +96,24 @@ const Footer = () => {
     <FooterContainer>
       <Container>
         <FooterContent>
-          <FooterSection
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <SectionTitle>Luke Wang</SectionTitle>
-            <SectionText>
-              Software Engineer passionate about creating innovative solutions 
-              and building exceptional user experiences. Always learning and 
-              growing in the ever-evolving world of technology.
-            </SectionText>
-          </FooterSection>
-
-          <FooterSection
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <SectionTitle>Quick Links</SectionTitle>
-            <QuickLinks>
-              <QuickLink onClick={scrollToTop}>Home</QuickLink>
-              <QuickLink onClick={() => scrollToSection('about')}>About</QuickLink>
-              <QuickLink onClick={() => scrollToSection('experience')}>Experience</QuickLink>
-              <QuickLink onClick={() => scrollToSection('skills')}>Skills</QuickLink>
-              <QuickLink onClick={() => scrollToSection('contact')}>Contact</QuickLink>
-            </QuickLinks>
-          </FooterSection>
-
-          <FooterSection
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <SectionTitle>Connect</SectionTitle>
-            <SectionText style={{ marginBottom: '1rem' }}>
-              Let's connect and explore opportunities together.
-            </SectionText>
-            <SocialLinks>
-              <SocialLink
-                href="https://www.linkedin.com/in/luke-wang-b38b4088/"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <FaLinkedin />
-              </SocialLink>
-              <SocialLink
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <FaGithub />
-              </SocialLink>
-              <SocialLink
-                href="mailto:luke.wang@example.com"
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <FaEnvelope />
-              </SocialLink>
-            </SocialLinks>
-          </FooterSection>
+          <SocialLinks>
+            <SocialLink
+              href="https://www.linkedin.com/in/luke-wang-b38b4088/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaLinkedin />
+            </SocialLink>
+            <SocialLink
+              href="mailto:luke_wang1987@163.com"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaEnvelope />
+            </SocialLink>
+          </SocialLinks>
         </FooterContent>
 
         <FooterBottom>
