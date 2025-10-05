@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaLinkedin } from 'react-icons/fa';
 
 const ContactSection = styled.section`
   padding: 6rem 2rem;
@@ -226,15 +226,11 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <FaEnvelope />,
-      text: "luke.wang@example.com"
-    },
-    {
-      icon: <FaPhone />,
-      text: "+1 (555) 123-4567"
+      text: "luke_wang1987@163.com"
     },
     {
       icon: <FaMapMarkerAlt />,
-      text: "San Francisco, CA"
+      text: "中国江苏南京"
     }
   ];
 
@@ -247,7 +243,7 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          Get In Touch
+联系我
         </SectionTitle>
 
         <ContactContent>
@@ -257,11 +253,9 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <ContactTitle>Let's Work Together</ContactTitle>
+            <ContactTitle>让我们合作</ContactTitle>
             <ContactDescription>
-              I'm always interested in new opportunities and exciting projects. 
-              Whether you have a question or just want to say hi, I'll try my best 
-              to get back to you!
+我始终对工业4.0和智能制造领域的新机遇和激动人心的项目感兴趣。无论您有问题还是想讨论合作，我都会尽力回复您！
             </ContactDescription>
 
             <ContactList>
@@ -290,13 +284,11 @@ const Contact = () => {
                 <FaLinkedin />
               </SocialLink>
               <SocialLink
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:luke_wang1987@163.com"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <FaGithub />
+                <FaEnvelope />
               </SocialLink>
             </SocialLinks>
           </ContactInfo>
@@ -309,52 +301,52 @@ const Contact = () => {
             onSubmit={handleSubmit}
           >
             <FormGroup>
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">姓名</Label>
               <Input
                 type="text"
                 id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Your Name"
+                placeholder="您的姓名"
                 required
               />
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">邮箱</Label>
               <Input
                 type="email"
                 id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="your.email@example.com"
+                placeholder="您的邮箱@example.com"
                 required
               />
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="subject">Subject</Label>
+              <Label htmlFor="subject">主题</Label>
               <Input
                 type="text"
                 id="subject"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
-                placeholder="Subject"
+                placeholder="主题"
                 required
               />
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="message">Message</Label>
+              <Label htmlFor="message">消息</Label>
               <TextArea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Your message..."
+                placeholder="您的消息..."
                 required
               />
             </FormGroup>
@@ -364,7 +356,7 @@ const Contact = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Send Message
+发送消息
             </SubmitButton>
           </ContactForm>
         </ContactContent>

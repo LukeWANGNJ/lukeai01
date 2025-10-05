@@ -139,13 +139,16 @@ const ImageContainer = styled(motion.div)`
   align-items: center;
 `;
 
-const ProfileImage = styled(motion.img)`
+const ProfileImage = styled(motion.div)`
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  border: 4px solid rgba(255, 255, 255, 0.2);
+  background-image: url('/images/avatar.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(255, 255, 255, 0.1);
 
   @media (max-width: 768px) {
     width: 200px;
@@ -170,7 +173,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Hello, I'm
+你好，我是
           </Greeting>
           
           <Name
@@ -178,7 +181,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Luke Wang
+王晋
           </Name>
           
           <Title
@@ -186,7 +189,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            Software Engineer & Technology Leader
+工业4.0与智能制造专家
           </Title>
           
           <Description
@@ -194,8 +197,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            Passionate about building innovative solutions and leading high-performing teams. 
-            Experienced in full-stack development, cloud technologies, and agile methodologies.
+致力于通过创新的工业4.0解决方案推动制造业数字化转型。在MES、智能制造和产品组合管理方面拥有超过15年的经验。
           </Description>
           
           <ButtonGroup
@@ -209,15 +211,18 @@ const Hero = () => {
               onClick={scrollToContact}
             >
               <FaEnvelope />
-              Get In Touch
+联系我
             </PrimaryButton>
             
             <SecondaryButton
+              as="a"
+              href="/Luke_Wang_CV.pdf"
+              download="Luke_Wang_CV.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <FaDownload />
-              Download CV
+下载简历
             </SecondaryButton>
           </ButtonGroup>
           
@@ -250,8 +255,6 @@ const Hero = () => {
         
         <ImageContainer>
           <ProfileImage
-            src="/images/avatar.jpg"
-            alt="Luke Wang"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
